@@ -15,7 +15,7 @@ class Stack: public Vector<T>
 {
 public:
     void push(T const& e) { this->push_back(e); }
-    T pop() { return this->remove(this->size() - 1); }
+    T& pop() { return this->remove(this->size() - 1); }
     T& top() { return this->operator[](this->size() - 1); }
     bool empty() {return this->size()== 0;}
 };
