@@ -24,7 +24,7 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
     for(int i = 0, flag = 0; i < str.size(); ++i, flag = 0) {
         //除数不能为
         if(*(StrBegin + i) == '0' && *(StrBegin + i - 1) == '/') {
-            throw runtime_error(ExpreesionError::DIVISION_ERROR);
+            throw ExpreesionError::DIVISION_ERROR;
         }
         //判断是否为负数
         if(*(StrBegin + i) == '-' && (i == 0 || *(StrBegin+i-1) == '(')) {
@@ -63,7 +63,7 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
         }
         if(i == str.size()) break;
         if(!Expression::isOperator(StrBegin + i) && !isdigit(*(StrBegin +i))) {
-            throw runtime_error(ExpreesionError::ILLEGAL_CHARACTER_ERROR);
+            throw ExpreesionError::ILLEGAL_CHARACTER_ERROR;
         }
         //如果是操作符
         if(!(OptrStack.empty())) {
@@ -81,7 +81,7 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
                         ExprNode->lchild = ExprStack.top(); ExprStack.pop();
                         ExprStack.push(ExprNode);
                     } else {
-                        throw runtime_error(ExpreesionError::ILLEGAL_BRACKET_ERROR);
+                        throw ExpreesionError::ILLEGAL_BRACKET_ERROR;
                     }
                 }
                 OptrStack.pop();
@@ -106,7 +106,7 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
                                 ExprStack.push(ExprNode);
                         } else {
                             //计算的数不够
-                            throw runtime_error(ExpreesionError::MISSING_OPERAND_ERROR);
+                            throw ExpreesionError::MISSING_OPERAND_ERROR;
                         }
                         OptrStack.push(*(StrBegin + i));
                         break;
@@ -129,7 +129,7 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
     }
     //如果ExprStack中有两个元素以上， 或者OptrStack仍不为空， 则表达式错误
     if(!(OptrStack.empty()) || ExprStack.size() >= 2) {
-        throw runtime_error(ExpreesionError::MISSING_EXPRESSION_ERROR);
+        throw ExpreesionError::MISSING_EXPRESSION_ERROR;
     }
     return ExprStack.top();
 }

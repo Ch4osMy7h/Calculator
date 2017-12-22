@@ -7,16 +7,10 @@
 //去掉空格
 void trim(string &s)
 {
-
     int index = 0;
-    if( !s.empty())
-    {
+    if( !s.empty() )
         while( (index = s.find(' ',index)) != string::npos)
-        {
             s.erase(index,1);
-        }
-    }
-
 }
 
 Caculator::Caculator(QWidget *parent) :
@@ -96,10 +90,17 @@ void Caculator::on_pushButton0_clicked()
 void Caculator::on_pushButton_ans_clicked()
 {
     BinTree ExprTree;
-    QString exprsb = ui->lineEdit->text();
-    string expr((const char*)exprsb.toLocal8Bit());
+    QString Qexpr = ui->lineEdit->text();
+    string expr = Qexpr.toStdString();
     trim(expr);
-    ExprTree.ChangeToBitTree(expr);
+    try {
+            ExprTree.ChangeToBitTree(expr);
+    } catch(string wrong) {
+        text = QString::fromStdString(wrong);
+        ui->lineEdit->setText(text);
+        text = "";
+        return;
+    }
     string buffer;
     ExprTree.postOrderTreeWalk(buffer);
     buffer = ExprTree.Calculate().Show() + "    (" + buffer + ")";
