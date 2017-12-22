@@ -54,8 +54,8 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
                 (ExprNode->data).setImag(num);
             }
             ExprNode->isComplex = true;
-            ExprNode->lchild = NULL;
-            ExprNode->rchild = NULL;
+            ExprNode->lchild = nullptr;
+            ExprNode->rchild = nullptr;
             ExprStack.push(ExprNode);
         }
         if(i == str.size()) break;
@@ -133,10 +133,10 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
 
 //得到后缀表达式
 void BinNode::postOrderTreeWalk(BinNode *root,string &str) {
-    if (root->lchild != NULL) {
+    if (root->lchild != nullptr) {
         postOrderTreeWalk(root->lchild, str);
     }
-    if (root->rchild != NULL) {
+    if (root->rchild != nullptr) {
         postOrderTreeWalk(root->rchild, str);
     }
     if (!root->lchild && !root->rchild) {
