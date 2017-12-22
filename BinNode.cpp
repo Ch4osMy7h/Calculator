@@ -5,8 +5,11 @@
 #include "BinNode.h"
 #include "Stack.h"
 #include "Expression.h"
+#include <string>
 
 class Expression;
+
+
 
 BinNode* BinNode::ChangeToBitTree(string &str) {
     Stack<PtrToBinNode > ExprStack;

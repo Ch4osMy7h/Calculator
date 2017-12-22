@@ -59,5 +59,4 @@ public:
 };
 
 
-
 #endif //CALCULATOR_EXPRESSION_H

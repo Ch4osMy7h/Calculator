@@ -13,6 +13,8 @@ Stack.h
 /Users/linzhichao/Desktop/Calculator/Stack.h
 Expression.h
 /Users/linzhichao/Desktop/Calculator/Expression.h
+string
+-
 
 /Users/linzhichao/Desktop/Calculator/BinNode.h
 iostream
@@ -34,6 +36,12 @@ Expression.h
 BinNode.h
 /Users/linzhichao/Desktop/Calculator/BinNode.h
 string
+-
+
+/Users/linzhichao/Desktop/Calculator/Caculator.h
+QMainWindow
+-
+QString
 -
 
 /Users/linzhichao/Desktop/Calculator/Complex.cpp
@@ -73,4 +81,8 @@ BinNode.h
 /Users/linzhichao/Desktop/Calculator/BinNode.h
 BinTree.h
 /Users/linzhichao/Desktop/Calculator/BinTree.h
+Caculator.h
+/Users/linzhichao/Desktop/Calculator/Caculator.h
+string
+-
 

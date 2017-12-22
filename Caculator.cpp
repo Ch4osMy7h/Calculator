@@ -2,6 +2,22 @@
 #include "ui_caculator.h"
 #include "BinNode.h"
 #include "BinTree.h"
+#include <QString>
+
+//去掉空格
+void trim(string &s)
+{
+
+    int index = 0;
+    if( !s.empty())
+    {
+        while( (index = s.find(' ',index)) != string::npos)
+        {
+            s.erase(index,1);
+        }
+    }
+
+}
 
 Caculator::Caculator(QWidget *parent) :
     QMainWindow(parent),
@@ -80,7 +96,9 @@ void Caculator::on_pushButton0_clicked()
 void Caculator::on_pushButton_ans_clicked()
 {
     BinTree ExprTree;
-    string expr = text.toStdString();
+    QString exprsb = ui->lineEdit->text();
+    string expr((const char*)exprsb.toLocal8Bit());
+    trim(expr);
     ExprTree.ChangeToBitTree(expr);
     string buffer;
     ExprTree.postOrderTreeWalk(buffer);

@@ -26,6 +26,7 @@ CMakeFiles/Calculator.dir/Expression.cpp.o: ../Expression.h
 
 CMakeFiles/Calculator.dir/main.cpp.o: ../BinNode.h
 CMakeFiles/Calculator.dir/main.cpp.o: ../BinTree.h
+CMakeFiles/Calculator.dir/main.cpp.o: ../Caculator.h
 CMakeFiles/Calculator.dir/main.cpp.o: ../Complex.h
 CMakeFiles/Calculator.dir/main.cpp.o: ../Expression.h
 CMakeFiles/Calculator.dir/main.cpp.o: ../main.cpp

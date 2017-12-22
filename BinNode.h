@@ -12,6 +12,9 @@
 
 using std::string;
 
+
+
+
 class BinNode {
 public:
     bool isComplex; //判断该节点是否为复数，如果是复数则为true,否则值为假, 并且用来存放运算符
