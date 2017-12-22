@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QString>
+#include <QKeyEvent>
 namespace Ui {
 class Caculator;
 }
@@ -61,7 +62,12 @@ private slots:
 
     void on_pushButton_right_clicked();
 
+    void on_pushButton_point_clicked();
+
 private:
+    void keyPressEvent(QKeyEvent *event);
+
+
     QString text = "";
     Ui::Caculator *ui;
 };
