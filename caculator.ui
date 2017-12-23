@@ -310,6 +310,32 @@
      <string>.</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton_imag_2">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>270</y>
+      <width>61</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>File</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_ac_2">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>350</y>
+      <width>61</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ran</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
@@ -318,7 +344,7 @@
      <x>0</x>
      <y>0</y>
      <width>569</width>
-     <height>32</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

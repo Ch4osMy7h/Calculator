@@ -2,15 +2,15 @@
 #include "ui_caculator.h"
 #include "BinNode.h"
 #include "BinTree.h"
-
-
+#include <QTextStream>
+#include <QFileDialog>
 
 //去掉空格
 void trim(string &s)
 {
     int index = 0;
     if( !s.empty() )
-        while( (index = s.find(' ',index)) != string::npos)
+        while( (index = s.find('\n',index)) != string::npos )
             s.erase(index,1);
 }
 
@@ -236,7 +236,7 @@ void Caculator::keyPressEvent(QKeyEvent *event)
     case Qt::Key_I:
         on_pushButton_imag_clicked();
         break;
-    case Qt::Key_Enter:
+    case Qt::Key_Return:
     case Qt::Key_Equal:
         on_pushButton_ans_clicked();
         break;
@@ -246,4 +246,62 @@ void Caculator::keyPressEvent(QKeyEvent *event)
     default:
         break;
     }
+}
+
+void Caculator::on_pushButton_imag_2_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "选择要导入的文件", "/");
+    if(fileName == NULL)
+        return;
+    QFile file(fileName);
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        return;
+    while(!file.atEnd()) {
+        QString line = file.readLine();
+        ui->lineEdit->setText(line);
+    }
+    file.close();
+}
+
+void Caculator::on_pushButton_ac_2_clicked()
+{
+    int ran_num, i = 0, n = 0;
+       int flag[12];
+       char ch[4] = {'+', '-', '*', '/'};
+       string str;
+
+       memset(flag, 2, sizeof(flag));
+       srand((unsigned)time(0));
+       for(int j=0; j < (rand()%8)+2; j++)
+       {
+           if(rand()%2)
+           {
+               str += '(';
+               flag[i++] = 0;
+               if(rand()%2)
+                   str += '-';
+           }
+           for(int k=0; k < (rand()%3)+1; k++)
+           {
+               ran_num = rand()%10;
+               if(ran_num == 0 && k == 0) ran_num = 1;
+               str += ran_num + '0';
+           }
+           if(rand()%2)
+               str += 'i';
+           if(rand()%2 && flag[n] == 0)
+           {
+               str += ')';
+               flag[n++] = 1;
+           }
+           str += ch[rand()%3];
+       }
+       if(flag[n++] == 0)
+           *(str.end()-1) = ')';
+       else
+           *(str.end()-1) = '\n';
+       while(flag[n++] == 0)
+           str += ')';
+       QString a=QString::fromStdString(str);
+       ui->lineEdit->setText(a);
 }

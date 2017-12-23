@@ -64,6 +64,10 @@ private slots:
 
     void on_pushButton_point_clicked();
 
+    void on_pushButton_imag_2_clicked();
+
+    void on_pushButton_ac_2_clicked();
+
 private:
     void keyPressEvent(QKeyEvent *event);
 
