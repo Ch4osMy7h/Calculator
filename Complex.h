@@ -22,6 +22,8 @@ public:
     bool isReal();
     double getImag();
     double getReal();
+    void setReal(double& newReal);
+    void setImag(double& newImag);
     void setReal(int& newReal);
     void setImag(int& newImag);
     std::string Show();

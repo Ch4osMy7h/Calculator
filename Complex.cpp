@@ -103,6 +103,15 @@ void Complex::setImag(int &newImag) {
     imag = newImag;
 }
 
+void Complex::setReal(double &newReal) {
+    real = newReal;
+}
+
+void Complex::setImag(double &newImag) {
+    imag = newImag;
+}
+
+
 bool Complex::isInt(double a)
 {
     double temp;

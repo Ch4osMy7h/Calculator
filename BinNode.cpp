@@ -6,6 +6,7 @@
 #include "Stack.h"
 #include "Expression.h"
 #include <string>
+#include <cmath>
 
 class Expression;
 
@@ -17,9 +18,9 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
     Stack<char> OptrStack;
     int flag; //标记
     PtrToBinNode *pt;
-    int i, j, num;
+    double i, j, num;
     auto StrBegin = str.begin();
-    std::cout << "转化后的字符串为:";
+    //std::cout << "转化后的字符串为:";
     int CTOPTR; //存储Optr转化成对应数字
     for(int i = 0, flag = 0; i < str.size(); ++i, flag = 0) {
         //除数不能为
@@ -39,6 +40,16 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
                 }
                 //跳到第一个不是数字的位置
                 i = j;
+                //如果有小数点就计算浮点数
+                double float_num = 0;
+                if(*(StrBegin+i) == '.') {
+                    i++;
+                    for (j = i + 1, float_num = (*(StrBegin + i) - '0') * pow(10, -1); isdigit(*(StrBegin + j)); ++j) {
+                        float_num += ((*(StrBegin + j)) - '0') * pow(10,  -(j - i + 1));
+                    }
+                    num += float_num;
+                    i = j;
+                }
             } else {
                 num = 1;
             }
