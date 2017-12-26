@@ -99,10 +99,9 @@ void Caculator::on_pushButton_ans_clicked()
     try {
             ExprTree.ChangeToBitTree(expr);
     } catch(string wrong) {
-        text = QString::fromStdString(wrong);
+        QString wrong_text = QString::fromStdString(wrong);
         ui->statusbar->setStyleSheet("background-color:#d56b67;");
-        ui->statusbar->showMessage(text);
-        text = "";
+        ui->statusbar->showMessage(wrong_text);
         return;
     }
     string buffer;
