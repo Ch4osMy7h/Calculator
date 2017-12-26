@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Complex.h"
 #include "BinTree.h"
+
 #include "Expression.h"
 
 using std::string;

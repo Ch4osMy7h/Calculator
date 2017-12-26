@@ -9,7 +9,7 @@
 //去掉空格
 void trim(string &s)
 {
-    int index = 0;
+    size_t index = 0;
     if( !s.empty() )
         while( (index = s.find('\n',index)) != string::npos || (index = s.find(' ',index)) != string::npos)
             s.erase(index,1);
@@ -94,6 +94,11 @@ void Caculator::on_pushButton_ans_clicked()
 {
     BinTree ExprTree;
     QString Qexpr = ui->expression->text();
+    if(Qexpr == NULL) {
+        ui->statusbar->setStyleSheet("background-color:#d56b67;");
+        ui->statusbar->showMessage("输入表达式不能为空");
+        return ;
+    }
     string expr = Qexpr.toStdString();
     trim(expr);
     try {
@@ -117,7 +122,7 @@ void Caculator::on_pushButton_ans_clicked()
     text = "=" + QString::fromStdString(buffer) ;
     ui->answer->setText(text);
     ui->statusbar->setStyleSheet("background-color:#66ff66;");
-    ui->statusbar->showMessage("done");
+    ui->statusbar->showMessage("Done");
     text = QString::fromStdString(expr);
 }
 
