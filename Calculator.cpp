@@ -1,5 +1,5 @@
-#include "Caculator.h"
-#include "ui_caculator.h"
+#include "Calculator.h"
+#include "ui_calculator.h"
 #include "BinNode.h"
 #include "BinTree.h"
 #include <QTextStream>
@@ -15,9 +15,9 @@ void trim(string &s)
             s.erase(index,1);
 }
 
-Caculator::Caculator(QWidget *parent) :
+Calculator::Calculator(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::Caculator)
+    ui(new Ui::Calculator)
 {
     ui->setupUi(this);
     ui->expression->setText(text);
@@ -25,72 +25,72 @@ Caculator::Caculator(QWidget *parent) :
     ui->expression->setFocusPolicy(Qt::NoFocus);
 }
 
-Caculator::~Caculator()
+Calculator::~Calculator()
 {
     delete ui;
 }
 
-void Caculator::on_pushButton9_clicked()
+void Calculator::on_pushButton9_clicked()
 {
     text += "9";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton8_clicked()
+void Calculator::on_pushButton8_clicked()
 {
     text +="8";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton7_clicked()
+void Calculator::on_pushButton7_clicked()
 {
     text +="7";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton6_clicked()
+void Calculator::on_pushButton6_clicked()
 {
     text += "6";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton5_clicked()
+void Calculator::on_pushButton5_clicked()
 {
     text +="5";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton4_clicked()
+void Calculator::on_pushButton4_clicked()
 {
     text += "4";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton3_clicked()
+void Calculator::on_pushButton3_clicked()
 {
     text += "3";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton2_clicked()
+void Calculator::on_pushButton2_clicked()
 {
     text += "2";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton1_clicked()
+void Calculator::on_pushButton1_clicked()
 {
     text += "1";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton0_clicked()
+void Calculator::on_pushButton0_clicked()
 {
     text += "0";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_ans_clicked()
+void Calculator::on_pushButton_ans_clicked()
 {
     BinTree ExprTree;
     QString Qexpr = ui->expression->text();
@@ -126,74 +126,74 @@ void Caculator::on_pushButton_ans_clicked()
     text = QString::fromStdString(expr);
 }
 
-void Caculator::on_pushButton_imag_clicked()
+void Calculator::on_pushButton_imag_clicked()
 {
     text += "i";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_pow_clicked()
+void Calculator::on_pushButton_pow_clicked()
 {
     text += "^";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_del_clicked()
+void Calculator::on_pushButton_del_clicked()
 {
     text.remove(text.length() - 1, 1);
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_ac_clicked()
+void Calculator::on_pushButton_ac_clicked()
 {
     text.clear();
     ui->expression->setText(text);
     ui->answer->setText(text);
 }
 
-void Caculator::on_pushButton_plus_clicked()
+void Calculator::on_pushButton_plus_clicked()
 {
     text += "+";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_div_clicked()
+void Calculator::on_pushButton_div_clicked()
 {
     text += "/";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_mul_clicked()
+void Calculator::on_pushButton_mul_clicked()
 {
     text += "*";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_minus_clicked()
+void Calculator::on_pushButton_minus_clicked()
 {
     text += "-";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_left_clicked()
+void Calculator::on_pushButton_left_clicked()
 {
     text += "(";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_right_clicked()
+void Calculator::on_pushButton_right_clicked()
 {
     text += ")";
     ui->expression->setText(text);
 }
 
-void Caculator::on_pushButton_point_clicked()
+void Calculator::on_pushButton_point_clicked()
 {
     text += ".";
     ui->expression->setText(text);
 }
 
-void Caculator::keyPressEvent(QKeyEvent *event)
+void Calculator::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
     case Qt::Key_1:
@@ -265,7 +265,7 @@ void Caculator::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void Caculator::on_pushButton_imag_2_clicked()
+void Calculator::on_pushButton_imag_2_clicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "选择要导入的文件", "/");
     if(fileName == NULL) {
@@ -286,45 +286,45 @@ void Caculator::on_pushButton_imag_2_clicked()
     file.close();
 }
 
-void Caculator::on_pushButton_ac_2_clicked()
+void Calculator::on_pushButton_ac_2_clicked()
 {
     int ran_num, i = 0, n = 0;
-       int flag[12];
-       char ch[4] = {'+', '-', '*', '/'};
-       string str;
+    int flag[12];
+    char ch[4] = {'+', '-', '*', '/'};
+    string str;
 
-       memset(flag, 2, sizeof(flag));
-       srand((unsigned)time(0));
-       for(int j=0; j < (rand()%8)+2; j++)
-       {
-           if(rand()%2)
-           {
-               str += '(';
-               flag[i++] = 0;
-               if(rand()%2)
-                   str += '-';
-           }
-           for(int k=0; k < (rand()%3)+1; k++)
-           {
-               ran_num = rand()%10;
-               if(ran_num == 0 && k == 0) ran_num = 1;
-               str += ran_num + '0';
-           }
-           if(rand()%2)
-               str += 'i';
-           if(rand()%2 && flag[n] == 0)
-           {
-               str += ')';
-               flag[n++] = 1;
-           }
-           str += ch[rand()%3];
-       }
-       if(flag[n++] == 0)
-           *(str.end()-1) = ')';
-       else
-           *(str.end()-1) = '\n';
-       while(flag[n++] == 0)
-           str += ')';
-       QString a=QString::fromStdString(str);
-       ui->expression->setText(a);
+    memset(flag, 2, sizeof(flag));
+    srand((unsigned)time(0));
+    for(int j=0; j < (rand()%8)+2; j++)
+    {
+        if(rand()%2)
+        {
+            str += '(';
+            flag[i++] = 0;
+            if(rand()%2)
+                str += '-';
+        }
+        for(int k=0; k < (rand()%3)+1; k++)
+        {
+            ran_num = rand()%10;
+            if(ran_num == 0 && k == 0) ran_num = 1;
+            str += ran_num + '0';
+        }
+        if(rand()%2)
+            str += 'i';
+        if(rand()%2 && flag[n] == 0)
+        {
+            str += ')';
+            flag[n++] = 1;
+        }
+        str += ch[rand()%3];
+    }
+    if(flag[n++] == 0)
+        *(str.end()-1) = ')';
+    else
+        *(str.end()-1) = '\n';
+    while(flag[n++] == 0)
+        str += ')';
+    QString a=QString::fromStdString(str);
+    ui->expression->setText(a);
 }

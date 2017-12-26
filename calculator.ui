@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Caculator</class>
- <widget class="QMainWindow" name="Caculator">
+ <class>Calculator</class>
+ <widget class="QMainWindow" name="Calculator">
   <property name="geometry">
    <rect>
     <x>0</x>

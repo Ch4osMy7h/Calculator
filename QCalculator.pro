@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = QCaculator
+TARGET = QCalculator
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -29,7 +29,7 @@ SOURCES += \
     BinTree.cpp \
     Complex.cpp \
     Expression.cpp \
-    Caculator.cpp
+    Calculator.cpp
 
 HEADERS += \
     BinNode.h \
@@ -38,7 +38,7 @@ HEADERS += \
     Expression.h \
     Vector.h \
     Stack.h \
-    Caculator.h
+    Calculator.h
 
 FORMS += \
-        caculator.ui
+        calculator.ui

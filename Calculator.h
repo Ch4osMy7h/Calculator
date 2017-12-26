@@ -1,20 +1,20 @@
-#ifndef CACULATOR_H
-#define CACULATOR_H
+#ifndef CALCULATOR_H
+#define CALCULATOR_H
 
 #include <QMainWindow>
 #include <QString>
 #include <QKeyEvent>
 namespace Ui {
-class Caculator;
+class Calculator;
 }
 
-class Caculator : public QMainWindow
+class Calculator : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit Caculator(QWidget *parent = 0);
-    ~Caculator();
+    explicit Calculator(QWidget *parent = 0);
+    ~Calculator();
 
 private slots:
 
@@ -73,7 +73,7 @@ private:
 
 
     QString text = "";
-    Ui::Caculator *ui;
+    Ui::Calculator *ui;
 };
 
-#endif // CACULATOR_H
+#endif // CALCULATOR_H

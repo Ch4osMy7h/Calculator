@@ -1,7 +1,7 @@
 #include <iostream>
 #include "BinNode.h"
 #include "BinTree.h"
-#include "Caculator.h"
+#include "Calculator.h"
 #include <QApplication>
 #include <string>
 using namespace std;
@@ -9,8 +9,8 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     QApplication window(argc, argv);
-    Caculator cac;
-    cac.show();
+    Calculator calc;
+    calc.show();
     /*
     string str;
     while(cin >> str) {
