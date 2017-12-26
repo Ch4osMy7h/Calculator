@@ -4,13 +4,14 @@
 #include "BinTree.h"
 #include <QTextStream>
 #include <QFileDialog>
+#include <QMessageBox>
 
 //去掉空格
 void trim(string &s)
 {
     int index = 0;
     if( !s.empty() )
-        while( (index = s.find('\n',index)) != string::npos )
+        while( (index = s.find('\n',index)) != string::npos || (index = s.find(' ',index)) != string::npos)
             s.erase(index,1);
 }
 
@@ -19,8 +20,9 @@ Caculator::Caculator(QWidget *parent) :
     ui(new Ui::Caculator)
 {
     ui->setupUi(this);
-    ui->lineEdit->setText(text);
-    ui->lineEdit->setFocusPolicy(Qt::NoFocus);
+    ui->expression->setText(text);
+    ui->answer->setText(text);
+    ui->expression->setFocusPolicy(Qt::NoFocus);
 }
 
 Caculator::~Caculator()
@@ -31,149 +33,153 @@ Caculator::~Caculator()
 void Caculator::on_pushButton9_clicked()
 {
     text += "9";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton8_clicked()
 {
     text +="8";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton7_clicked()
 {
     text +="7";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton6_clicked()
 {
     text += "6";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton5_clicked()
 {
     text +="5";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton4_clicked()
 {
     text += "4";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton3_clicked()
 {
     text += "3";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton2_clicked()
 {
     text += "2";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton1_clicked()
 {
     text += "1";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton0_clicked()
 {
     text += "0";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_ans_clicked()
 {
     BinTree ExprTree;
-    QString Qexpr = ui->lineEdit->text();
+    QString Qexpr = ui->expression->text();
     string expr = Qexpr.toStdString();
     trim(expr);
     try {
             ExprTree.ChangeToBitTree(expr);
     } catch(string wrong) {
         text = QString::fromStdString(wrong);
-        ui->lineEdit->setText(text);
+        ui->statusbar->setStyleSheet("background-color:#d56b67;");
+        ui->statusbar->showMessage(text);
         text = "";
         return;
     }
     string buffer;
     ExprTree.postOrderTreeWalk(buffer);
-    buffer = ExprTree.Calculate().Show() + "    (" + buffer + ")";
+    buffer = ExprTree.Calculate().Show();
     text = QString::fromStdString(buffer);
-    ui->lineEdit->setText(text);
-    text = "";
+    ui->answer->setText(text);
+    ui->statusbar->setStyleSheet("background-color:#66ff66;");
+    ui->statusbar->showMessage("done");
+    text = QString::fromStdString(expr);
 }
 
 void Caculator::on_pushButton_imag_clicked()
 {
     text += "i";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_pow_clicked()
 {
     text += "^";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_del_clicked()
 {
     text.remove(text.length() - 1, 1);
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_ac_clicked()
 {
     text.clear();
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
+    ui->answer->setText(text);
 }
 
 void Caculator::on_pushButton_plus_clicked()
 {
     text += "+";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_div_clicked()
 {
     text += "/";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_mul_clicked()
 {
     text += "*";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_minus_clicked()
 {
     text += "-";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_left_clicked()
 {
     text += "(";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_right_clicked()
 {
     text += ")";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::on_pushButton_point_clicked()
 {
     text += ".";
-    ui->lineEdit->setText(text);
+    ui->expression->setText(text);
 }
 
 void Caculator::keyPressEvent(QKeyEvent *event)
@@ -254,11 +260,18 @@ void Caculator::on_pushButton_imag_2_clicked()
     if(fileName == NULL)
         return;
     QFile file(fileName);
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, QString("Read File"),
+                             QString("Cannot open file:\n%1").arg(fileName));
         return;
+    }else
+    {
+        QMessageBox::warning(this, QString("Path"),
+                             QString("You did not select any file."));
+    }
     while(!file.atEnd()) {
         QString line = file.readLine();
-        ui->lineEdit->setText(line);
+        ui->expression->setText(line);
     }
     file.close();
 }
@@ -303,5 +316,5 @@ void Caculator::on_pushButton_ac_2_clicked()
        while(flag[n++] == 0)
            str += ')';
        QString a=QString::fromStdString(str);
-       ui->lineEdit->setText(a);
+       ui->expression->setText(a);
 }

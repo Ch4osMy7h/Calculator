@@ -92,7 +92,7 @@ string Complex::Show() {
         str = imagStr + "i";
     else
         str = "0";
-    return str + " ";
+    return str;
 }
 
 void Complex::setReal(int &newReal) {
