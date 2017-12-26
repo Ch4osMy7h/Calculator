@@ -257,17 +257,16 @@ void Caculator::keyPressEvent(QKeyEvent *event)
 void Caculator::on_pushButton_imag_2_clicked()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "选择要导入的文件", "/");
-    if(fileName == NULL)
-        return;
+    if(fileName == NULL) {
+        QMessageBox::warning(this, QString("Path"),
+                             QString("You did not select any file."));
+        return ;
+    }
     QFile file(fileName);
     if(!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::warning(this, QString("Read File"),
                              QString("Cannot open file:\n%1").arg(fileName));
         return;
-    }else
-    {
-        QMessageBox::warning(this, QString("Path"),
-                             QString("You did not select any file."));
     }
     while(!file.atEnd()) {
         QString line = file.readLine();
