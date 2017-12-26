@@ -114,7 +114,7 @@ void Caculator::on_pushButton_ans_clicked()
         ui->statusbar->showMessage(wrong_text);
         return;
     }
-    text = QString::fromStdString(buffer);
+    text = "=" + QString::fromStdString(buffer) ;
     ui->answer->setText(text);
     ui->statusbar->setStyleSheet("background-color:#66ff66;");
     ui->statusbar->showMessage("done");
