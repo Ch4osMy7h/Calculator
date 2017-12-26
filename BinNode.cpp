@@ -16,9 +16,10 @@ BinNode* BinNode::ChangeToBitTree(string &str) {
     Stack<PtrToBinNode > ExprStack;
     BinNode* ExprNode;
     Stack<char> OptrStack;
-    int flag; //标记
-    PtrToBinNode *pt;
-    double i, j, num;
+    //记录多位整数
+    double j;
+    double num;
+
     auto StrBegin = str.begin();
     //std::cout << "转化后的字符串为:";
     int CTOPTR; //存储Optr转化成对应数字
@@ -199,6 +200,9 @@ Complex BinNode::Calculate(BinNode* root) {
                 lvalue = lvalue * rvalue;
                 break;
             case POW:
+                if(rvalue.getImag() != 0) {
+                    throw ExpreesionError::CANT_COMPLEX_EXCP;
+                }
                 lvalue = lvalue.pow(rvalue.getReal());
                 break;
             default:break;

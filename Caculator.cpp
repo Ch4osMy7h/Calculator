@@ -105,8 +105,15 @@ void Caculator::on_pushButton_ans_clicked()
         return;
     }
     string buffer;
+    try {
     ExprTree.postOrderTreeWalk(buffer);
     buffer = ExprTree.Calculate().Show();
+    }catch(string wrong) {
+        QString wrong_text = QString::fromStdString(wrong);
+        ui->statusbar->setStyleSheet("background-color:#d56b67;");
+        ui->statusbar->showMessage(wrong_text);
+        return;
+    }
     text = QString::fromStdString(buffer);
     ui->answer->setText(text);
     ui->statusbar->setStyleSheet("background-color:#66ff66;");

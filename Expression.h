@@ -48,6 +48,8 @@ namespace ExpreesionError {
     const string MISSING_EXPRESSION_ERROR = "表达式错误";
     //不能对复数求阶乘
     const string CANT_COMPLEX_FACTORIAL = "不能对复数求阶乘";
+    //指数不能为复数
+    const string CANT_COMPLEX_EXCP = "指数不能为阶乘";
 }
 
 
