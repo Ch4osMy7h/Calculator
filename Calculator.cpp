@@ -149,6 +149,8 @@ void Calculator::on_pushButton_ac_clicked()
     text.clear();
     ui->expression->setText(text);
     ui->answer->setText(text);
+    ui->statusbar->setStyleSheet("background-color:#FFFFFF;");
+    ui->statusbar->showMessage("");
 }
 
 void Calculator::on_pushButton_plus_clicked()

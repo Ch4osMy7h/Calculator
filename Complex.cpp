@@ -39,7 +39,7 @@ Complex Complex::operator*(Complex a)
 
 Complex Complex::operator/(Complex a)
 {
-    return (this->operator*(a.conjugate())).operator/(a.real*a.real+a.imag*a.imag);
+    return (this->operator*(a.conjugate())).operator /(a.real*a.real+a.imag*a.imag);
 }
 
 Complex Complex::pow(int n)

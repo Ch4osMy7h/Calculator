@@ -30,7 +30,6 @@ public:
 private:
     double imag, real;
     bool isInt(double a);
-
 };
 
 #endif //CALCULATOR_COMPLEX_H

@@ -30,7 +30,6 @@ public:
     T& remove(Rank r);
     //void sort(Rank lo = 0, Rank hi = _size);
     void traverse(void (*) (T&));
-    template <typename VST> void traverse(VST&);
 };
 
 
@@ -116,12 +115,6 @@ void Vector<T>::traverse(void (*visit) (T&))
         visit(_elem[i]);
 }
 
-template <typename T> template <typename VST>
-void Vector<T>::traverse(VST& visit)
-{
-    for(int i = 0; i < _size; i++)
-        visit(_elem[i]);
-}
 
 
 
